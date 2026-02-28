@@ -1,0 +1,75 @@
+/* ─── Track Info ────────────────────────────────────────────── */
+@keyframes track-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0 10px;
+  animation: track-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.track-info__color-bar {
+  width: 3px;
+  height: 52px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  transition: background 0.8s ease;
+  opacity: 0.85;
+}
+
+.track-info__text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.track-info__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.track-info__artist {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(212, 132, 26, 0.75);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.track-info__loading-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: amber-pulse 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+  margin-left: auto;
+  box-shadow: 0 0 8px rgba(212, 132, 26, 0.5);
+}
+
+@keyframes amber-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}

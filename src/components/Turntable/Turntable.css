@@ -1,0 +1,144 @@
+/* ─── Turntable Stage ───────────────────────────────────────── */
+.turntable-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 0;
+  /* Warm felt platform — deep espresso brown */
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    #211808 0%,
+    #160f05 60%,
+    #0e0902 100%
+  );
+  border-radius: 14px;
+  box-shadow:
+    inset 0 3px 12px rgba(0, 0, 0, 0.7),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(212, 132, 26, 0.06);
+  min-height: 296px;
+}
+
+/* ─── Platter ───────────────────────────────────────────────── */
+@keyframes platter-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.turntable-platter {
+  position: absolute;
+  width: 276px;
+  height: 276px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #2a2010 0deg,   #3e3020 6deg,   #2a2010 12deg,  #443828 18deg,
+    #2a2010 24deg,  #38280e 30deg,  #3e3020 36deg,  #2a2010 42deg,
+    #443828 48deg,  #2e2010 54deg,  #3e3020 60deg,  #2a2010 66deg,
+    #38280e 72deg,  #3e3020 78deg,  #2a2010 84deg,  #443828 90deg,
+    #2e2010 96deg,  #3e3020 102deg, #2a2010 108deg, #38280e 114deg,
+    #3e3020 120deg, #2a2010 126deg, #443828 132deg, #2e2010 138deg,
+    #3e3020 144deg, #2a2010 150deg, #38280e 156deg, #3e3020 162deg,
+    #2a2010 168deg, #443828 174deg, #2e2010 180deg, #3e3020 186deg,
+    #2a2010 192deg, #38280e 198deg, #3e3020 204deg, #2a2010 210deg,
+    #443828 216deg, #2e2010 222deg, #3e3020 228deg, #2a2010 234deg,
+    #38280e 240deg, #3e3020 246deg, #2a2010 252deg, #443828 258deg,
+    #2e2010 264deg, #3e3020 270deg, #2a2010 276deg, #38280e 282deg,
+    #3e3020 288deg, #2a2010 294deg, #443828 300deg, #2e2010 306deg,
+    #3e3020 312deg, #2a2010 318deg, #38280e 324deg, #3e3020 330deg,
+    #2a2010 336deg, #443828 342deg, #2e2010 348deg, #2a2010 360deg
+  );
+  animation: platter-spin 1.8s linear infinite;
+  animation-play-state: paused;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.75),
+    inset 0 0 0 2px rgba(255, 200, 80, 0.04);
+}
+
+.turntable-platter.is-playing {
+  animation-play-state: running;
+}
+
+.turntable-platter__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 132, 26, 0.06);
+  transform: translate(-50%, -50%);
+}
+
+.turntable-platter__ring--outer  { width: 92%; height: 92%; }
+.turntable-platter__ring--middle { width: 62%; height: 62%; border-color: rgba(212, 132, 26, 0.04); }
+.turntable-platter__ring--inner  { width: 32%; height: 32%; border-color: rgba(212, 132, 26, 0.04); }
+
+.turntable-platter__spindle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #c89848, #7a5020);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ─── Record wrapper (on top of platter) ───────────────────── */
+.turntable-record-wrapper {
+  position: relative;
+  z-index: 5;
+  filter: drop-shadow(0 8px 28px rgba(0, 0, 0, 0.80));
+}
+
+/* ─── Loading overlay ───────────────────────────────────────── */
+.turntable-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 14px;
+  z-index: 20;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.turntable-loading__spinner {
+  width: 34px;
+  height: 34px;
+  border: 2px solid rgba(212, 132, 26, 0.15);
+  border-top-color: rgba(212, 132, 26, 0.80);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+/* ─── Brand ─────────────────────────────────────────────────── */
+.turntable-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 4px 4px;
+}
+
+.turntable-brand__name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  color: rgba(212, 132, 26, 0.50);
+  text-shadow: 0 0 12px rgba(212, 132, 26, 0.2);
+}
+
+.turntable-brand__model {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  color: rgba(212, 132, 26, 0.25);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}

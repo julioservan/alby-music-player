@@ -1,0 +1,183 @@
+/* ─── Tone Arm ──────────────────────────────────────────────── */
+
+/*
+  Geometry (stage coords, stage ~440px wide, record center ~(220, 150)):
+  Pivot container: top:14px right:14px, 44×44px
+    → pivot center at x≈402, y≈36 in stage
+
+  Assembly: 225px wide, pivot at x=200 from left
+    → left edge at x=202 (near record center), right edge (CW stub) at x=427
+
+  Arm length (pivot → headshell): 200px
+  Angles (rotate around pivot, 0°=horizontal pointing left):
+    Rest   : −30°  → headshell at (229, −64) — above the stage  ✓
+    Start  :   5°  → headshell at (203, +53) — outer groove     ✓
+    End    :  27°  → headshell at (224, +127) — inner groove    ✓
+*/
+
+/* ── Pivot container ─────────────────────────────────────────── */
+.tonearm-pivot-container {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  z-index: 15;
+  overflow: visible;
+}
+
+/* ── Pivot post (warm bronze) ────────────────────────────────── */
+.tonearm-pivot-post {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 32%,
+    #d4a060 0%,
+    #9a6830 35%,
+    #6a4018 65%,
+    #3a2008 100%
+  );
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.70),
+    inset 0 2px 3px rgba(255, 200, 80, 0.35),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.40);
+  z-index: 1;
+}
+
+/* ── Assembly ────────────────────────────────────────────────── */
+.tonearm-assembly {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 200px);
+  width: 225px;
+  height: 10px;
+  transform-origin: 200px 50%;
+  transform: translateY(-50%) rotate(-30deg);
+  transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Playing: arm drops onto record, tracks from outer to inner groove */
+.tonearm-assembly.is-playing {
+  transform: translateY(-50%) rotate(calc(5deg + (22deg * var(--track-progress, 0))));
+  transition: transform 0.9s linear;
+}
+
+/* ── Arm tube (warm aluminum) ────────────────────────────────── */
+.tonearm-tube {
+  position: absolute;
+  left: 22px;
+  right: 30px;
+  top: 50%;
+  height: 7px;
+  transform: translateY(-50%);
+  /* Warm aluminum — slightly golden tint */
+  background: linear-gradient(
+    180deg,
+    #e0d4b8 0%,
+    #c0a878 20%,
+    #9a8258 50%,
+    #c0a878 80%,
+    #d8c898 100%
+  );
+  border-radius: 3.5px;
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.50),
+    inset 0 1px 0 rgba(255, 220, 120, 0.40),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20);
+}
+
+/* ── Headshell ───────────────────────────────────────────────── */
+.tonearm-headshell {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tonearm-headshell__body {
+  width: 22px;
+  height: 10px;
+  background: linear-gradient(180deg, #d8c898 0%, #a08850 100%);
+  border-radius: 3px 3px 2px 2px;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 220, 120, 0.4);
+}
+
+/* Amber cartridge (replaces blue) */
+.tonearm-headshell__cartridge {
+  width: 14px;
+  height: 9px;
+  margin-top: 1px;
+  background: linear-gradient(180deg, #d49030, #8a5810);
+  border-radius: 2px 2px 1px 1px;
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 200, 80, 0.30);
+}
+
+/* Needle / stylus */
+.tonearm-headshell__stylus {
+  width: 2px;
+  height: 8px;
+  background: linear-gradient(180deg, #e0c880 0%, #ffe8a0 100%);
+  border-radius: 0 0 1px 1px;
+  margin-top: 1px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.40);
+}
+
+/* ── Counterweight (warm bronze) ─────────────────────────────── */
+.tonearm-counterweight {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.tonearm-counterweight__disc {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 32%,
+    #c89040 0%,
+    #7a5020 55%,
+    #3a2008 100%
+  );
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.60),
+    inset 0 2px 2px rgba(255, 200, 80, 0.20),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.30);
+}
+
+/* ── Pivot cap (shiny brass top) ─────────────────────────────── */
+.tonearm-pivot-cap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 32%,
+    #f0e090 0%,
+    #c09040 55%,
+    #806020 100%
+  );
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    inset 0 1px 2px rgba(255, 230, 100, 0.50);
+}

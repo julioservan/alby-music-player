@@ -1,0 +1,83 @@
+/* ─── Progress Bar ──────────────────────────────────────────── */
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.progress-bar__time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.progress-bar__time--duration {
+  text-align: right;
+}
+
+.progress-bar {
+  flex: 1;
+  padding: 13px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar__track {
+  position: relative;
+  height: 2px;
+  background: rgba(245, 237, 216, 0.07);
+  border-radius: 1px;
+  overflow: visible;
+  transition: height 0.2s ease;
+}
+
+.progress-bar:hover .progress-bar__track {
+  height: 3px;
+}
+
+.progress-bar__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #8a5010, var(--accent));
+  border-radius: 1px;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+.progress-bar:hover .progress-bar__fill {
+  height: 3px;
+}
+
+.progress-bar__thumb {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  transform: translate(-50%, -50%) scale(0.7);
+  box-shadow:
+    0 0 0 2px rgba(212, 132, 26, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.5);
+  transition: left 0.1s linear, transform 0.2s ease, box-shadow 0.2s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.progress-bar:hover .progress-bar__thumb,
+.progress-bar:active .progress-bar__thumb {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow:
+    0 0 0 3px rgba(212, 132, 26, 0.25),
+    0 0 12px rgba(212, 132, 26, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.5);
+}

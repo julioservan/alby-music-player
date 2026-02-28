@@ -1,0 +1,106 @@
+/* ─── Controls ──────────────────────────────────────────────── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0;
+}
+
+.controls__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(245, 237, 216, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.25s ease, background 0.25s ease, transform 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.controls__btn:active {
+  transform: scale(0.91);
+}
+
+/* Icon buttons (prev, next, shuffle, repeat) */
+.controls__btn--icon {
+  width: 38px;
+  height: 38px;
+}
+
+.controls__btn--icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.controls__btn--icon:hover {
+  color: var(--text-primary);
+  background: rgba(212, 132, 26, 0.08);
+}
+
+/* Active state for shuffle / repeat */
+.controls__btn--icon.is-active {
+  color: var(--accent);
+}
+
+.controls__btn--icon.is-active:hover {
+  color: var(--accent-bright);
+  background: rgba(212, 132, 26, 0.10);
+}
+
+/* Active dot indicator (below shuffle/repeat) */
+.controls__btn--icon.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+.controls__btn--icon {
+  position: relative;
+}
+
+/* Play / Pause button */
+.controls__btn--play {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(145deg, #c87818, #9a5a10);
+  border-radius: 50%;
+  color: rgba(255, 240, 200, 0.95);
+  box-shadow:
+    0 4px 20px rgba(212, 132, 26, 0.40),
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 200, 80, 0.25);
+  transition: box-shadow 0.25s ease, transform 0.15s ease, background 0.25s ease;
+  margin: 0 10px;
+  border: 1px solid rgba(255, 180, 60, 0.2);
+}
+
+.controls__btn--play svg {
+  width: 24px;
+  height: 24px;
+}
+
+.controls__btn--play:hover {
+  background: linear-gradient(145deg, #e09020, #c87818);
+  box-shadow:
+    0 6px 30px rgba(212, 132, 26, 0.60),
+    0 2px 10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 220, 100, 0.30);
+}
+
+.controls__btn--play:active {
+  transform: scale(0.92);
+  box-shadow:
+    0 2px 12px rgba(212, 132, 26, 0.40),
+    0 1px 4px rgba(0, 0, 0, 0.5);
+}

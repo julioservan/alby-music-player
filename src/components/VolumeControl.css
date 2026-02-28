@@ -1,0 +1,84 @@
+/* ─── Volume Control ────────────────────────────────────────── */
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.volume-control__mute-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(245, 237, 216, 0.35);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.volume-control__mute-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.volume-control__mute-btn:hover {
+  color: var(--accent);
+}
+
+.volume-control__bar {
+  flex: 1;
+  padding: 11px 0;
+  cursor: pointer;
+}
+
+.volume-control__track {
+  position: relative;
+  height: 2px;
+  background: rgba(245, 237, 216, 0.07);
+  border-radius: 1px;
+}
+
+.volume-control__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(212, 132, 26, 0.5), rgba(212, 132, 26, 0.85));
+  border-radius: 1px;
+  transition: width 0.05s linear;
+}
+
+.volume-control__thumb {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease, left 0.05s linear;
+  pointer-events: none;
+  box-shadow:
+    0 0 8px rgba(212, 132, 26, 0.5),
+    0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.volume-control__bar:hover .volume-control__thumb {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.volume-control__value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66rem;
+  color: var(--text-tertiary);
+  min-width: 26px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
