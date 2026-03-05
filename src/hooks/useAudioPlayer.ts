@@ -154,7 +154,7 @@ export function useAudioPlayer() {
     } else {
       audio.pause();
     }
-  }, [state.isPlaying, dispatch, ensureAudioContext]);
+  }, [state.isPlaying, state.currentIndex, dispatch, ensureAudioContext]);
 
   // Volume with smooth ramp (avoids clicks/pops)
   useEffect(() => {
