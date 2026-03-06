@@ -14,9 +14,9 @@ See `CLAUDE.md` for the full list. Key commands:
 - `npm run build` — TypeScript type-check + Vite production build
 - `npm run lint` — ESLint (zero-warnings policy)
 
-### Known issues
+### Notes
 
-- **ESLint config missing from repo:** The `.eslintrc.cjs` file was never committed. Running `npm run lint` fails with "ESLint couldn't find a configuration file." The build (`npm run build`) and type-checking (`npx tsc --noEmit`) work correctly.
+- The `react-refresh/only-export-components` rule whitelists `usePlayer` and `usePlayerActions` in `.eslintrc.cjs` because `PlayerContext.tsx` intentionally co-exports hooks alongside the provider component.
 
 ### No tests
 
